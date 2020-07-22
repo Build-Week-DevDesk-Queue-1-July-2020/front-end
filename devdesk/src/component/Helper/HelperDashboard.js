@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 
 
-// Header For the Helper Dashboard 
+// Header For the Helper Dashboard
 
 
 
@@ -37,7 +37,7 @@ return (
       <h1>Lambda DevDesk</h1>
       </Title>
       <Nav>
-          <Link className="nav-links" to={"/login"}>
+          <Link className="nav-links" to={"/helper/login"}>
           Sign Out
           </Link>
           </Nav>
@@ -54,7 +54,7 @@ return (
           <p>no tickets</p>
         ) : (
           tickets.map(tick => {
-            return ( 
+            return (
             <div className="ticket">
             <TicketCard key={tick.id} ticket={tick} token={props.token} {...props}/>
             </div>)

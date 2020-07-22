@@ -23,7 +23,7 @@ class LoginForm extends Component {
     login = e => {
         e.preventDefault();
         axiosWithAuth()
-        .post("/login", this.state.credentials)
+        .post("/students/login", this.state.credentials)
         .then(res => {
             localStorage.setItem("token", res.data.payload);
             this.props.history.push("/protected")
@@ -44,6 +44,7 @@ class LoginForm extends Component {
                         value={this.state.credentials.username}
                         placeholder='UserName'
                         onChange={this.handleChange}
+                        required
                     />
                     <input
                         className='input'
@@ -52,6 +53,7 @@ class LoginForm extends Component {
                         value={this.state.credentials.password}
                         placeholder='Password'
                         onChange={this.handleChange}
+                        required
                     />
                     <button>Please Log In</button>
                 </form>
