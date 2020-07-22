@@ -6,7 +6,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 
 
-// Createing Ticket Header an Styles 
+// Creating Ticket Header an Styles 
 
 
 
@@ -57,7 +57,7 @@ export default function CreateTicket() {
           <Title>
             <Img
               className="main-img"
-              src={require(`./Lambda_Logo.jpg`)}
+              src={require(`LOGO`)}
               alt="logo"
             />
             <h1>DevDesk</h1>
