@@ -6,7 +6,7 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 
 
-// Creating Ticket Header an Styles 
+// Creating Ticket Header an Styles
 
 
 
@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 export default function CreateTicket() {
     const [category, setCategory] = useState([]);
-  
+
     const history = useHistory();
     useEffect(() => {
       Axios.get("API")
@@ -29,7 +29,7 @@ export default function CreateTicket() {
           console.log("Axios request finished.");
         });
     }, []);
-  
+
     function submitHandler(values, actions) {
       console.log(values, actions);
       values["status"] = "Open";
@@ -50,7 +50,7 @@ export default function CreateTicket() {
           console.log("Axios request finished.");
         });
     }
-  
+
     return (
       <>
         <MainHeader>
@@ -71,12 +71,12 @@ export default function CreateTicket() {
             </Link>
           </Nav>
         </MainHeader>
+      </>
+    )
 
 
-        
+        //Form Formik
 
-        //Form Formik 
-        
 
 
 
