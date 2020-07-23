@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 import styled from "styled-components";
 
 
@@ -13,8 +13,8 @@ import styled from "styled-components";
 
 
 // Adding API Request here
-axios
-.get("Ticket API ", {
+axiosWithAuth()
+.get("/helper/:id/tickets/:ticketId", {
   headers: {
     Authorization: props.token
   }
@@ -27,7 +27,21 @@ axios
 .finally(() => {
   console.log("Axios request finished.");
 });
-, [];
+
+axiosWithAuth()
+.post("/helper/:id/tickets/", {
+  headers: {
+    Authorization: props.token
+  }
+})
+.then(response => {
+  console.log(response.data);
+  setTickets(response.data);
+})
+.catch(e => console.log(e.message))
+.finally(() => {
+  console.log("Ticket Posted.");
+});
 
 return (
     <section>
