@@ -13,21 +13,23 @@ import styled from "styled-components";
 
 
 // Adding API Request here
-axios
-.get("Ticket API ", {
-  headers: {
-    Authorization: props.token
-  }
-})
-.then(response => {
-  console.log(response.data);
-  setTickets(response.data);
-})
-.catch(e => console.log(e.message))
-.finally(() => {
-  console.log("Axios request finished.");
-});
-, [];
+useEffect(() => {
+  axiosWithAuth()
+  .get("/helper/tickets", {
+    headers: {
+      Authorization: props.token
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+    setTickets(response.data);
+  })
+  .catch(e => console.log(e.message))
+  .finally(() => {
+    console.log("Axios request finished.");
+  });
+}), [];
+
 
 return (
     <section>

@@ -21,8 +21,8 @@ export default function StudentDashboard(props) {
   
     useEffect(() => {
       // Adding API Request here
-      axios
-        .get("Ticket API", {
+      axiosWithAuth()
+        .get("/student/tickets", {
           headers: {
             Authorization: props.token
           }

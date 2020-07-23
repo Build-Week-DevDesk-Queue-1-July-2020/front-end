@@ -19,13 +19,14 @@ import { Link } from "react-router-dom";
 
 
  // Sending form data to server
- axios
- .post(" :id", values)
+ useEffect() {
+ axiosWithAuth()
+ .post(" /helper/tickets/:id", values)
  .then(res => {
    actions.resetForm();
    console.log(res);
    if (res.status === 200) {
-     props.history.push("/student/dashboard");
+     props.history.push("/helper/tickets/:id");
    }
    console.log("response", res);
    actions.resetForm();
@@ -38,6 +39,7 @@ import { Link } from "react-router-dom";
 
 
 
-//  Body then Fomik Form 
+
+//  Body then Hook-Form
 
 
