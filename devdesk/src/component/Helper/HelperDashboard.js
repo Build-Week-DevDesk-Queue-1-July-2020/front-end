@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 import styled from "styled-components";
 
 
@@ -13,6 +13,7 @@ import styled from "styled-components";
 
 
 // Adding API Request here
+<<<<<<< HEAD
 useEffect(() => {
   axiosWithAuth()
   .get("/helper/tickets", {
@@ -30,6 +31,37 @@ useEffect(() => {
   });
 }), [];
 
+=======
+axiosWithAuth()
+.get("/helper/:id/tickets/:ticketId", {
+  headers: {
+    Authorization: props.token
+  }
+})
+.then(response => {
+  console.log(response.data);
+  setTickets(response.data);
+})
+.catch(e => console.log(e.message))
+.finally(() => {
+  console.log("Axios request finished.");
+});
+
+axiosWithAuth()
+.post("/helper/:id/tickets/", {
+  headers: {
+    Authorization: props.token
+  }
+})
+.then(response => {
+  console.log(response.data);
+  setTickets(response.data);
+})
+.catch(e => console.log(e.message))
+.finally(() => {
+  console.log("Ticket Posted.");
+});
+>>>>>>> 6a1bcbec53b16e4bcd78344e1fac3964e083c0ab
 
 return (
     <section>

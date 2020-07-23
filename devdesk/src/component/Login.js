@@ -20,10 +20,27 @@ class LoginForm extends Component {
         });
     };
 
+    //This is the student login
+
     login = e => {
         e.preventDefault();
         axiosWithAuth()
         .post("/students/login", this.state.credentials)
+        .then(res => {
+            localStorage.setItem("token", res.data.payload);
+            this.props.history.push("/protected")
+        })
+        .catch(err => {
+            console.log("Err is", err);
+        });
+    };
+
+    //This is the helpers login
+
+    hlogin = e => {
+        e.preventDefault();
+        axiosWithAuth()
+        .post("/helpers/login", this.state.credentials)
         .then(res => {
             localStorage.setItem("token", res.data.payload);
             this.props.history.push("/protected")
