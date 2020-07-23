@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 
 
 
-
 export default function CreateTicket() {
     const [category, setCategory] = useState([]);
 
@@ -73,15 +72,7 @@ export default function CreateTicket() {
         </MainHeader>
       </>
     )
+}
 
 
         //Form Formik
-
-
-
-
-
-
-
-
-

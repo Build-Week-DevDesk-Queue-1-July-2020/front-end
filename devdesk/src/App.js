@@ -5,6 +5,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
+import CreateTicket from './Components/TicketCreation';
 
 function App() {
   return (
@@ -20,10 +21,10 @@ function App() {
           <Register />
         </Route>
         <Route path='/create-ticket'>
-          <TicketCreation />
+          <CreateTicket />
         </Route>
         <Route path='/ticket-queue'>
-          <TicketQueue />
+          <CreateTicket />
         </Route>
       </Switch>
     </div>

@@ -3,83 +3,69 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-
-
-
-// Header Styled 
-
-
-
-
-
-
+// Header Styled
 
 export default function StudentDashboard(props) {
-    // Adding useState to track data from useEffect
-    const [tickets, setTickets] = useState([]);
-    console.log(tickets);
-  
-    useEffect(() => {
-      // Adding API Request here
-      axios
-        .get("Ticket API", {
-          headers: {
-            Authorization: props.token
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          setTickets(response.data);
-        })
-        .catch(e => console.log(e.message))
-        .finally(() => {
-          console.log("Axios request finished.");
-        });
-    }, []);
-  
-    return (
-      <section>
-         <MainHeader>
+  // Adding useState to track data from useEffect
+  const [tickets, setTickets] = useState([]);
+  console.log(tickets);
+
+  useEffect(() => {
+    // Adding API Request here
+    axios
+      .get("Ticket API", {
+        headers: {
+          Authorization: props.token,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setTickets(response.data);
+      })
+      .catch((e) => console.log(e.message))
+      .finally(() => {
+        console.log("Axios request finished.");
+      });
+  }, []);
+
+  return (
+    <section>
+      <MainHeader>
         <Title>
-        <Img
-              className="main-img"
-              src={require(`IF we want to add a Lambda pic`)}
-              alt="logo"
-            />
-      
-      
-        <h1> DevDesk</h1>
+          <Img
+            className="main-img"
+            src={require(`IF we want to add a Lambda pic`)}
+            alt="logo"
+          />
+
+          <h1> DevDesk</h1>
         </Title>
         <Nav>
-        <Link className="nav-links" to={"/student/createticket"}>
+          <Link className="nav-links" to={"/student/createticket"}>
             Create Ticket
-            </Link>
-            <Link className="nav-links" to={"/login"}>
+          </Link>
+          <Link className="nav-links" to={"/login"}>
             Sign Out
-            </Link>
-            </Nav>
+          </Link>
+        </Nav>
       </MainHeader>
-        <h2>Student Dashboard</h2>
-        <div className="dashboard">
-          {!tickets ? (
-            <p>no tickets</p>
-          ) : (
-            tickets.map(tick => {
-              return <TicketCard key={tick.id} ticket={tick} token={props.token} {...props} />;
-            })
-          )}
-        </div>
-      </section>
-    );
-  }
-
-
-
-
-
-
-
-
-
-
-
+      <h2>Student Dashboard</h2>
+      <div className="dashboard">
+        {!tickets ? (
+          <p>no tickets</p>
+        ) : (
+          tickets.map((tick) => {
+            return (
+              <TicketCard
+                key={tick.id}
+                ticket={tick}
+                token={props.token}
+                {...props}
+              />
+            );
+          })
+        )}
+      </div>
+    </section>
+  );
+}
