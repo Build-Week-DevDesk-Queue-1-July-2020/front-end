@@ -13,25 +13,6 @@ import styled from "styled-components";
 
 
 // Adding API Request here
-<<<<<<< HEAD
-useEffect(() => {
-  axiosWithAuth()
-  .get("/helper/tickets", {
-    headers: {
-      Authorization: props.token
-    }
-  })
-  .then(response => {
-    console.log(response.data);
-    setTickets(response.data);
-  })
-  .catch(e => console.log(e.message))
-  .finally(() => {
-    console.log("Axios request finished.");
-  });
-}), [];
-
-=======
 axiosWithAuth()
 .get("/helper/:id/tickets/:ticketId", {
   headers: {
@@ -61,7 +42,6 @@ axiosWithAuth()
 .finally(() => {
   console.log("Ticket Posted.");
 });
->>>>>>> 6a1bcbec53b16e4bcd78344e1fac3964e083c0ab
 
 return (
     <section>

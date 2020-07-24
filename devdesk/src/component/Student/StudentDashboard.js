@@ -6,33 +6,6 @@ import styled from "styled-components";
 // Header Styled
 
 export default function StudentDashboard(props) {
-<<<<<<< HEAD
-    // Adding useState to track data from useEffect
-    const [tickets, setTickets] = useState([]);
-    console.log(tickets);
-  
-    useEffect(() => {
-      // Adding API Request here
-      axiosWithAuth()
-        .get("/student/tickets", {
-          headers: {
-            Authorization: props.token
-          }
-        })
-        .then(response => {
-          console.log(response.data);
-          setTickets(response.data);
-        })
-        .catch(e => console.log(e.message))
-        .finally(() => {
-          console.log("Axios request finished.");
-        });
-    }, []);
-  
-    return (
-      <section>
-         <MainHeader>
-=======
   // Adding useState to track data from useEffect
   const [tickets, setTickets] = useState([]);
   console.log(tickets);
@@ -73,7 +46,6 @@ export default function StudentDashboard(props) {
   return (
     <section>
       <MainHeader>
->>>>>>> 6a1bcbec53b16e4bcd78344e1fac3964e083c0ab
         <Title>
           <Img
             className="main-img"
