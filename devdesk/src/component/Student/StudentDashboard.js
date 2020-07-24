@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 import styled from "styled-components";
 
 // Header Styled
@@ -12,8 +12,8 @@ export default function StudentDashboard(props) {
 
   useEffect(() => {
     // Adding API Request here
-    axios
-      .get("Ticket API", {
+    axiosWithAuth()
+      .post("/student/:id/tickets", {
         headers: {
           Authorization: props.token,
         },
@@ -27,6 +27,21 @@ export default function StudentDashboard(props) {
         console.log("Axios request finished.");
       });
   }, []);
+
+  axiosWithAuth()
+    .put("/student/:id/tickets/:ticketid", {
+      headers: {
+        Authorization: props.token,
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+      setTickets(response.data);
+    })
+    .catch((e) => console.log(e.message))
+    .finally(() => {
+      console.log("Edited Ticket Posted.");
+    });
 
   return (
     <section>

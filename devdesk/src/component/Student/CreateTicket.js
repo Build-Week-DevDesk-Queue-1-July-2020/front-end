@@ -34,20 +34,23 @@ export default function CreateTicket() {
       values["status"] = "Open";
       values["student_id"] = localStorage.getItem("userId");
       // Sending form data to server
-      axios
-        .post("API", values)
-        .then(res => {
-          console.log(res);
-          if (res.status === 200) {
-            history.push("/student/dashboard");
-          }
-          console.log("response", res);
-          actions.resetForm();
+
+      useEffect(() => {
+        axiosWithAuth()
+          .post("/student/tickets/:id", values)
+          .then(res => {
+            console.log(res);
+            if (res.status === 200) {
+              history.push("/student/dashboard");
+            }
+            console.log("response", res);
+            actions.resetForm();
+          })
+          .catch(e => console.log(e.message))
+          .finally(() => {
+            console.log("Axios request finished.");
+          });
         })
-        .catch(e => console.log(e.message))
-        .finally(() => {
-          console.log("Axios request finished.");
-        });
     }
 
     return (
@@ -62,7 +65,7 @@ export default function CreateTicket() {
             <h1>DevDesk</h1>
           </Title>
           <Nav>
-            <Link className="nav-links" to={"/student/dashboard"}>
+            <Link className="nav-links" to={"/student/tickets/:id"}>
               Dashboard
             </Link>
             <Link className="nav-links" to={"/login"}>
