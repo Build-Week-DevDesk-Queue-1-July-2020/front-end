@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, PrivateRoute } from 'react-router-dom';
 import './App.css';
 import Login from './Components/Login';
 import Register from './Components/Register';
@@ -16,15 +16,15 @@ function App() {
         <Route path='/login'>
           <Login />
         </Route>
-        <Route path='/register'>
+        <PrivateRoute path='/register'>
           <Register />
-        </Route>
-        <Route path='/create-ticket'>
+        </PrivateRoute>
+        <PrivateRoute path='/create-ticket'>
           <TicketCreation />
-        </Route>
-        <Route path='/ticket-queue'>
+        </PrivateRoute>
+        <PrivateRoute path='/ticket-queue'>
           <TicketQueue />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </div>
   );
