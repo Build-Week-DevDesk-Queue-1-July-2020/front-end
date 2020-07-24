@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, PrivateRoute } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
 // Material-UI imports
@@ -17,6 +17,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
+import PrivateRoute from './component/PrivateRoute';
 
 
 const useStyles = makeStyles((theme) => ({
