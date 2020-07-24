@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 // Material-UI imports
 import TextField from '@material-ui/core/TextField';
@@ -45,11 +45,9 @@ const Register = (props) => {
     const { register, handleSubmit, control, errors } = useForm();
     const classes= useStyles();
     const submitHandler = data => {
-        // Object.entries(errors).length === 0 ?
         console.log(data);
     };
 
-    console.log(errors);
 
     return (
         <div display="flex" >
@@ -59,9 +57,10 @@ const Register = (props) => {
                     <form onSubmit={handleSubmit(submitHandler)}>
                         <div>
                             <TextField
-                                id="outlined-basic"
+                                id="firstName"
                                 label="First Name"
                                 variant="outlined"
+                                required
                                 inputRef=
                                     {register(
                                         { required: {value: true, message: "First Name is required" }})
@@ -74,9 +73,10 @@ const Register = (props) => {
                         </div>
                         <div>
                             <TextField
-                                id="outlined-basic"
+                                id="lastName"
                                 label="Last Name"
                                 variant="outlined"
+                                required
                                 inputRef={register(
                                     { required: {value: true, message: "Last Name is required" }})
                                 }
@@ -88,9 +88,10 @@ const Register = (props) => {
                         </div>
                         <div>
                             <TextField
-                                id="outlined-basic"
+                                id="email"
                                 label="Email"
                                 variant="outlined"
+                                required
                                 inputRef={register(
                                     {
                                         required: {value: true, message: "Email is required" },
@@ -105,9 +106,10 @@ const Register = (props) => {
                         </div>
                         <div>
                             <TextField
-                                id="outlined-basic"
+                                id="password"
                                 label="Password"
                                 variant="outlined"
+                                required
                                 inputRef={register(
                                     { required: {value: true, message: "A password is required" }})
                                 }

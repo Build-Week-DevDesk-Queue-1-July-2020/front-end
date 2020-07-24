@@ -17,7 +17,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
-import CreateTicket from './Components/TicketCreation';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,7 +59,7 @@ function App() {
           <Register />
         </Route>
         <Route path='/create-ticket'>
-          <CreateTicket />
+          <TicketCreation />
         </Route>
         <Route path='/ticket-queue'>
           <TicketQueue />

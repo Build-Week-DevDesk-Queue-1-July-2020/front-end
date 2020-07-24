@@ -40,7 +40,7 @@ const useStyles = makeStyles({
 });
 
 const TicketCreation = (props) => {
-    const { register, handleSubmit, control } = useForm();
+    const { register, handleSubmit, control, errors } = useForm();
     const classes= useStyles();
     const submitHandler = data => console.log(data);
 
@@ -53,12 +53,18 @@ const TicketCreation = (props) => {
                     <form onSubmit={handleSubmit(submitHandler)}>
                         <div>
                             <TextField
-                                id="outlined-basic"
+                                id="title"
                                 label="What's going on?"
                                 variant="outlined"
-                                inputRef={register}
+                                required
+                                inputRef=
+                                    {register(
+                                        { required: {value: true, message: "Title is required" }})
+                                    }
                                 name='title'
                                 className={classes.paper}
+                                error={'title' in errors}
+                                helperText={'title' in errors ? errors.title.message : null}
                             />
                         </div>
                         <div>
@@ -67,7 +73,6 @@ const TicketCreation = (props) => {
                                 <Select
                                     variant="outlined"
                                     className={classes.paper}
-                                    shrink={false}
                                 >
                                     <MenuItem value='react'>React</MenuItem>
                                     <MenuItem value='javascript'>JavaScript</MenuItem>
@@ -88,7 +93,9 @@ const TicketCreation = (props) => {
                                 rows={4}
                                 variant="outlined"
                                 name="tried"
-                                inputRef={register}
+                                inputRef={register(
+                                    { required: {value: true, message: "Title is required" }})
+                                }
                                 className={classes.paper}
                             />
                         </div>
