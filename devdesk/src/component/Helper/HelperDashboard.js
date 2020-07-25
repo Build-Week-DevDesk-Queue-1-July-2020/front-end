@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 // Adding API Request here
 axiosWithAuth()
-.get("/helper/:id/tickets/:ticketId", {
+.get("/helper/:id/ticket-queue", {
   headers: {
     Authorization: props.token
   }
