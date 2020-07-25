@@ -13,8 +13,9 @@ import styled from "styled-components";
 
 
 // Adding API Request here
+//helper pulls ticket to review
 axiosWithAuth()
-.get("/helper/:id/ticket-queue", {
+.get(`/helpers/tickets/${helperid}`, {
   headers: {
     Authorization: props.token
   }
@@ -28,8 +29,24 @@ axiosWithAuth()
   console.log("Axios request finished.");
 });
 
+//helper posts ticket to student that was helped
 axiosWithAuth()
-.post("/helper/:id/tickets/", {
+.post(`/students/${studentid}/tickets/${ticketid}`, {
+  headers: {
+    Authorization: props.token
+  }
+})
+.then(response => {
+  console.log(response.data);
+  setTickets(response.data);
+})
+.catch(e => console.log(e.message))
+.finally(() => {
+  console.log("Ticket Posted.");
+});
+
+axiosWithAuth()
+.post("", {
   headers: {
     Authorization: props.token
   }

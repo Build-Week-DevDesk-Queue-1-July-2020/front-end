@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 
 // Material-UI imports
@@ -46,7 +46,7 @@ function App() {
           <Typography variant="h6" className={classes.title}>
             Create A Ticket
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Link to="/login"><Button color="inherit">Login</Button></Link>
         </Toolbar>
       </AppBar>
       <Switch>
@@ -60,9 +60,11 @@ function App() {
           <Register />
         </PrivateRoute>
         <PrivateRoute path='/create-ticket'>
+          {/* //add ticket creation path */}
           <TicketCreation />
         </PrivateRoute>
         <PrivateRoute path='/ticket-queue'>
+          {/* //add ticket que path */}
           <TicketQueue />
         </PrivateRoute>
       </Switch>
