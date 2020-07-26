@@ -37,7 +37,7 @@ Tracking tickets, share tickets between users
 -   What do the top 3 similar apps do for their users?
     
 
-Trello, slack, zendesk
+Trello, Slack, Zendesk
 
 # 🛠 Frameworks - Libraries
 
@@ -83,6 +83,6 @@ To be followed
 
 Yes, hopefull..
 
-# Publication
+# 🤝 Publication
 
 Publishing  hosting platforms like **Blogger**, **Dropbox**, **Gist**, **GitHub**, **Google Drive**, **WordPress** and **Zendesk
