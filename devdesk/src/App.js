@@ -72,6 +72,7 @@ function App() {
           <Link to="/login"><Button color="inherit">Login</Button></Link>
         </Toolbar>
       </AppBar>
+      {/* Sidebar for navigation and/or ticket sorting purposes */}
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -91,6 +92,7 @@ function App() {
           ))}
         </List>
       </Drawer>
+      {/* Switch for routing */}
       <Switch>
         <Route exact path='/'>
           <h1>Index page</h1>
@@ -106,7 +108,7 @@ function App() {
           <TicketCreation />
         </PrivateRoute>
         <PrivateRoute path='/ticket-queue'>
-          {/* //add ticket que path */}
+          {/* //add ticket queue path */}
           <TicketQueue />
         </PrivateRoute>
       </Switch>
