@@ -28,7 +28,7 @@ class LoginForm extends Component {
         .post("/students/login", this.state.credentials)
         .then(res => {
             localStorage.setItem("token", res.data.payload);
-            this.props.history.push("/protected")
+            this.props.history.push("/tickets")
         })
         .catch(err => {
             console.log("Err is", err);

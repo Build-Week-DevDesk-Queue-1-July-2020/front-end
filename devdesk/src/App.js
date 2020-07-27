@@ -17,9 +17,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CreateIcon from '@material-ui/icons/Create';
 import InboxIcon from '@material-ui/icons/Inbox';
+import Login from "./component/Login";
 
 // Custom component imports
-import Login from './Components/Login';
+// import Login from './Components/Login';
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
@@ -103,11 +104,11 @@ function App() {
         <PrivateRoute path='/register'>
           <Register />
         </PrivateRoute>
-        <PrivateRoute path='/create-ticket'>
+        <PrivateRoute exact path='/create-ticket'>
           {/* //add ticket creation path */}
           <TicketCreation />
         </PrivateRoute>
-        <PrivateRoute path='/ticket-queue'>
+        <PrivateRoute exact path='/tickets'>
           {/* //add ticket queue path */}
           <TicketQueue />
         </PrivateRoute>

@@ -41,7 +41,7 @@ export default function CreateTicket() {
           .then(res => {
             console.log(res);
             if (res.status === 200) {
-              history.push("/student/dashboard");
+              history.push("/student/tickets/:id");
             }
             console.log("response", res);
             actions.resetForm();
