@@ -17,9 +17,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CreateIcon from '@material-ui/icons/Create';
 import InboxIcon from '@material-ui/icons/Inbox';
+import Login from "./component/Login";
 
 // Custom component imports
-import Login from './Components/Login';
+// import Login from './Components/Login';
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function App() {
+function App(props) {
   const classes = useStyles();
   const [links, setLinks] = useState([
     {title:'Create Ticket', url: '/create-ticket', icon: <CreateIcon />},
@@ -97,17 +98,21 @@ function App() {
         <Route exact path='/'>
           <h1>Index page</h1>
         </Route>
-        <Route path='/login'>
-          <Login />
+        <Route path='/login' >
+          <Login history={props.history}/>
         </Route>
         <PrivateRoute path='/register'>
           <Register />
         </PrivateRoute>
-        <PrivateRoute path='/create-ticket'>
+        <PrivateRoute exact path='/create-ticket'>
           {/* //add ticket creation path */}
           <TicketCreation />
         </PrivateRoute>
-        <PrivateRoute path='/ticket-queue'>
+        <PrivateRoute exact path='/students/:id/tickets/'>
+          {/* //add ticket queue path */}
+          <TicketQueue />
+        </PrivateRoute>
+        <PrivateRoute exact path='/helpers/:id/tickets/'>
           {/* //add ticket queue path */}
           <TicketQueue />
         </PrivateRoute>

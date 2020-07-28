@@ -1,57 +1,57 @@
-import React from 'react';
-import useForm from "react-hook-form";
+// import React from 'react';
+// import useForm from "react-hook-form";
 
 
 
 
 
 
-const Login = (props) => {
+// const Login = (props) => {
 
-    return (
-        <>
-        <div>
-            <h1>Login page</h1>
-        </div>
-        
-        <form>
-          
-            <label htmlFor="loginName">Login Name:  </label>
-            <input 
-                type="email" 
-                id="loginName" 
-                placeholder="enter email address"
-            
-            />
+//     return (
+//         <>
+//         <div>
+//             <h1>Login page</h1>
+//         </div>
 
-            <br/>
+//         <form>
 
-            <label htmlFor="enterPassword">Enter Password :</label>
-            <input
-                type="password"
-                id="enterPassword"
-                placeholder="Enter Password"
+//             <label htmlFor="loginName">Login Name:  </label>
+//             <input
+//                 type="email"
+//                 id="loginName"
+//                 placeholder="enter email address"
 
-            />
+//             />
 
-            <br/>
+//             <br/>
 
-            <input type="submit"/>
-        
+//             <label htmlFor="enterPassword">Enter Password :</label>
+//             <input
+//                 type="password"
+//                 id="enterPassword"
+//                 placeholder="Enter Password"
 
+//             />
+
+//             <br/>
+
+//             <input type="submit"/>
 
 
 
-          
-
-
-        </form>
-        </>
-        
-    );
-    
-};
 
 
 
-export default Login;
+
+
+//         </form>
+//         </>
+
+//     );
+
+// };
+
+
+
+// export default Login;
