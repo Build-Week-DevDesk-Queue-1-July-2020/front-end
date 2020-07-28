@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function App() {
+function App(props) {
   const classes = useStyles();
   const [links, setLinks] = useState([
     {title:'Create Ticket', url: '/create-ticket', icon: <CreateIcon />},
@@ -98,8 +98,8 @@ function App() {
         <Route exact path='/'>
           <h1>Index page</h1>
         </Route>
-        <Route path='/login'>
-          <Login />
+        <Route path='/login' >
+          <Login history={props.history}/>
         </Route>
         <PrivateRoute path='/register'>
           <Register />
@@ -108,7 +108,11 @@ function App() {
           {/* //add ticket creation path */}
           <TicketCreation />
         </PrivateRoute>
-        <PrivateRoute exact path='/tickets'>
+        <PrivateRoute exact path='/students/:id/tickets/'>
+          {/* //add ticket queue path */}
+          <TicketQueue />
+        </PrivateRoute>
+        <PrivateRoute exact path='/helpers/:id/tickets/'>
           {/* //add ticket queue path */}
           <TicketQueue />
         </PrivateRoute>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { withRouter } from "react-router-dom";
 
 
 class LoginForm extends Component {
@@ -24,31 +25,37 @@ class LoginForm extends Component {
 
     login = e => {
         e.preventDefault();
-        axiosWithAuth()
-        .post("/students/login", this.state.credentials)
-        .then(res => {
-            localStorage.setItem("token", res.data.payload);
-            this.props.history.push("/tickets")
-        })
-        .catch(err => {
-            console.log("Err is", err);
-        });
+        e.persist();
+        if (e.target.role.value === "student") {
+            axiosWithAuth()
+            .post("/auth/students/login", this.state.credentials)
+            .then(res => {
+                console.log("test", res.data.token)
+                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("student_id", res.data.student_id);
+                this.props.history.push("/students/:id/tickets/")
+            })
+            .catch(err => {
+                console.log("Err is", err);
+            });
+        }else {
+                axiosWithAuth()
+                .post("/auth/helpers/login", this.state.credentials)
+                .then(res => {
+                    localStorage.setItem("token", res.data.token);
+                    this.props.history.push("/helpers/:id/tickets")
+                })
+                .catch(err => {
+                    console.log("Err is", err);
+                });
+        }
+
+
     };
 
     //This is the helpers login
 
-    hlogin = e => {
-        e.preventDefault();
-        axiosWithAuth()
-        .post("/helpers/login", this.state.credentials)
-        .then(res => {
-            localStorage.setItem("token", res.data.payload);
-            this.props.history.push("/protected")
-        })
-        .catch(err => {
-            console.log("Err is", err);
-        });
-    };
+
 
     render() {
         return (
@@ -72,6 +79,10 @@ class LoginForm extends Component {
                         onChange={this.handleChange}
                         required
                     />
+                    <select name="role">
+                        <option value="student">Student</option>
+                        <option value="helper">Helper</option>
+                    </select>
                     <button>Please Log In</button>
                 </form>
             </div>
@@ -80,4 +91,4 @@ class LoginForm extends Component {
 }
 
 
-export default LoginForm;
+export default withRouter(LoginForm);
