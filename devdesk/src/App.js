@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
 
 // Material-UI imports
@@ -57,18 +57,42 @@ function App(props) {
     {title:'Create Ticket', url: '/create-ticket', icon: <CreateIcon />},
     {title: 'View Tickets', url: '/ticket-queue', icon: <InboxIcon />},
   ]);
+  const location = useLocation();
+  const [pageTitle, setPageTitle] = useState("");
 
+  // set the page title based on the URL path
+  useEffect( () => {
+    const path = location.pathname.split('/')
+    switch(path[1]) {
+      case 'login':
+        setPageTitle('Login');
+        break;
+      case 'register':
+          setPageTitle('Register');
+          break;
+      case 'students':
+      case 'helpers':
+        setPageTitle('My Queue');
+        break;
+      case'create-ticket':
+        setPageTitle('Create Ticket');
+        break;
+      default:
+        setPageTitle('Home');
+    }
+  }, [location]);
 
 
   return (
     <div className="App">
+      {/* Top navigation bar */}
       <AppBar position="static" className={classes.root}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Create A Ticket
+            {pageTitle}
           </Typography>
           <Link to="/login"><Button color="inherit">Login</Button></Link>
         </Toolbar>
@@ -82,7 +106,7 @@ function App(props) {
         <div className={classes.toolbar} />
         <List>
           {links.map((link, index) => (
-            <Link to={link.url} className={classes.link}>
+            <Link to={link.url} key={index} className={classes.link}>
               <ListItem button key={link.title}>
                 <ListItemIcon>
                   {link.icon}
