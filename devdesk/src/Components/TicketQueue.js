@@ -1,25 +1,24 @@
 import React from 'react';
 import TicketQueueCard from './TicketQueueCard';
 // Material-UI imports
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
-import { makeStyles } from "@material-ui/core/styles";
-
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    display: "inline-block",
-    width: "700px"
+    display: 'inline-block',
+    width: '700px',
   },
   button: {
-    marginTop: "32px",
-    backgroundColor: "#00B4D8",
-    "&:hover": {
-      boxShadow: "none",
-      backgroundColor: "#0077B6",
+    marginTop: '32px',
+    backgroundColor: '#00B4D8',
+    '&:hover': {
+      boxShadow: 'none',
+      backgroundColor: '#0077B6',
     },
   },
   details: {
@@ -29,7 +28,7 @@ const useStyles = makeStyles({
     textAlign: 'left',
   },
   content: {
-    width: 'fit-content'
+    width: 'fit-content',
   },
   cover: {
     width: 151,
@@ -52,7 +51,7 @@ const TicketQueue = props => {
   const classes = useStyles();
 
   return (
-    <div display="flex">
+    <div display='flex'>
       <h1>The Queue</h1>
       <TicketQueueCard
         age='1 DAY OLD'
