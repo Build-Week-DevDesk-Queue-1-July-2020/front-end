@@ -1,7 +1,7 @@
 
 # Welcome To The  Dev Desk Project 
 
-         # ☝️ Proposal
+# ☝️ Proposal
 
 ----------
 
@@ -80,8 +80,6 @@ To be followed
 
 -   Do you anticipate working on stretch functionality after completion of a Minimal Viable Product?
     
-
-Yes, hopefull..
 
 # 🤝 Publication
 
