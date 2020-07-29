@@ -18,7 +18,7 @@ export default function CreateTicket() {
 
     const history = useHistory();
     useEffect(() => {
-      Axios.get("API")
+      Axios.get("/student/tickets")
       .then(res => {
           console.log(res.data);
           setCategory(res.data);
@@ -37,9 +37,9 @@ export default function CreateTicket() {
 
       useEffect(() => {
         axiosWithAuth()
-          .post("/student/tickets/:id", values)
+          .post("/student/:id/tickets", values)
           .then(res => {
-            console.log(res);
+            localStorage.getItem("student_id");
             if (res.status === 200) {
               history.push("/student/tickets/:id");
             }
@@ -57,19 +57,12 @@ export default function CreateTicket() {
       <>
         <MainHeader>
           <Title>
-            <Img
-              className="main-img"
-              src={require(`LOGO`)}
-              alt="logo"
-            />
+
             <h1>DevDesk</h1>
           </Title>
           <Nav>
             <Link className="nav-links" to={"/student/tickets/:id"}>
               Dashboard
-            </Link>
-            <Link className="nav-links" to={"/login"}>
-              Sign Out
             </Link>
           </Nav>
         </MainHeader>

@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     boxShadow:
       "2px 4px 10px rgba(0, 0, 0, 0.02), 2px 3px 8px rgba(0, 0, 0, 0.02)",
     background: "#FFFFFF",
-    bordeRadius: "4px",
+    borderRadius: "4px",
     width: "343px",
     marginTop: "32px",
   },
