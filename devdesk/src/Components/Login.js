@@ -46,39 +46,28 @@ const useStyles = makeStyles({
 
 const LoginForm = (props) => {
     const { register, handleSubmit, control, errors } = useForm();
-    const [credentials, setCredentials] = useState({email: "", password: ""});
     const classes = useStyles();
 
-    const handleChange = e => {
-        this.setState({
-            credentials: {
-                ...this.state.credentials,
-                [e.target.name]: e.target.value
-            }
-        });
-    };
-
-    const login = e => {
-        e.preventDefault();
-        e.persist();
-        if (e.target.role.value === "student") {
+    const login = data => {
+        const credentials = {email: data.email, password: data.password};
+        if (data.role === "student") {
             axiosWithAuth()
-            .post("/auth/students/login", this.state.credentials)
+            .post("/auth/students/login", credentials)
             .then(res => {
                 console.log("test", res.data.token)
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("student_id", res.data.student_id);
-                this.props.history.push("/students/:id/tickets/")
+                props.history.push("/students/:id/tickets/")
             })
             .catch(err => {
                 console.log("Err is", err);
             });
         }else {
                 axiosWithAuth()
-                .post("/auth/helpers/login", this.state.credentials)
+                .post("/auth/helpers/login", credentials)
                 .then(res => {
                     localStorage.setItem("token", res.data.token);
-                    this.props.history.push("/helpers/:id/tickets")
+                    props.history.push("/helpers/:id/tickets")
                 })
                 .catch(err => {
                     console.log("Err is", err);
@@ -89,33 +78,6 @@ const LoginForm = (props) => {
     };
 
     return (
-        // <div>
-        //     <form className='login_form' onSubmit={this.login}>
-        //         <input
-        //             className='input'
-        //             type='text'
-        //             name='email'
-        //             value={this.state.credentials.username}
-        //             placeholder='UserName'
-        //             onChange={this.handleChange}
-        //             required
-        //         />
-        //         <input
-        //             className='input'
-        //             type='password'
-        //             name='password'
-        //             value={this.state.credentials.password}
-        //             placeholder='Password'
-        //             onChange={this.handleChange}
-        //             required
-        //         />
-        //         <select name="role">
-        //             <option value="student">Student</option>
-        //             <option value="helper">Helper</option>
-        //         </select>
-        //         <button>Please Log In</button>
-        //     </form>
-        // </div>
         <div display="flex">
             <h1>Log In To Your Account</h1>
             <Card className={classes.root}>
