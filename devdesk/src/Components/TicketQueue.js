@@ -1,11 +1,6 @@
 import React from 'react';
 import TicketQueueCard from './TicketQueueCard';
 // Material-UI imports
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -75,4 +70,7 @@ const TicketQueue = props => {
   );
 };
 
-export default TicketQueue;
+
+
+
+  export default TicketQueue;
