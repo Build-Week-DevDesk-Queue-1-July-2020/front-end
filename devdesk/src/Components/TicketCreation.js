@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 // Material-UI imports
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -42,7 +44,24 @@ const useStyles = makeStyles({
 const TicketCreation = (props) => {
     const { register, handleSubmit, control, errors } = useForm();
     const classes= useStyles();
-    const submitHandler = data => console.log(data);
+    const history = useHistory();
+
+    const submitHandler = data => {
+        // data.status = "Open";
+        data.student_id = localStorage.getItem("student_id");
+        console.log(data);
+
+        axiosWithAuth()
+        .post(`/students/${data.student_id}/tickets/`, data)
+        .then( res => {
+            console.log(res);
+            if(res.status === 200) {
+                history.push("/student/tickets/:id");
+            }
+        })
+        .catch( err => console.log(err))
+        .finally( () => console.log("Axios request finished."));
+    };
 
 
     return (
@@ -92,7 +111,7 @@ const TicketCreation = (props) => {
                                 multiline
                                 rows={4}
                                 variant="outlined"
-                                name="tried"
+                                name="what_ive_tried"
                                 inputRef={register(
                                     { required: {value: true, message: "Title is required" }})
                                 }
@@ -106,7 +125,7 @@ const TicketCreation = (props) => {
                                 multiline
                                 rows={4}
                                 variant="outlined"
-                                name="notes"
+                                name="description"
                                 inputRef={register}
                                 className={classes.paper}
                             />
