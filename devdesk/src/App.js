@@ -24,7 +24,7 @@ import Login from "./Components/Login";
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
-import PrivateRoute from './Components';
+import PrivateRoute from './Components/PrivateRoute';
 import { AvMicNone } from 'material-ui/svg-icons';
 
 
