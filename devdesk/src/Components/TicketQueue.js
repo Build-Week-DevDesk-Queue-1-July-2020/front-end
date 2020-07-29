@@ -75,4 +75,7 @@ const TicketQueue = props => {
   );
 };
 
-export default TicketQueue;
+
+
+
+  export default TicketQueue;
