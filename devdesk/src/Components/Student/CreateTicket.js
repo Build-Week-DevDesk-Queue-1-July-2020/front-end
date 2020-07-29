@@ -17,6 +17,7 @@ export default function CreateTicket() {
     const [category, setCategory] = useState([]);
 
     const history = useHistory();
+
     useEffect(() => {
       Axios.get("/student/tickets")
       .then(res => {
