@@ -17,14 +17,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CreateIcon from '@material-ui/icons/Create';
 import InboxIcon from '@material-ui/icons/Inbox';
-import Login from "./component/Login";
+import Login from "./Components/Login";
 
 // Custom component imports
 // import Login from './Components/Login';
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
-import PrivateRoute from './component/PrivateRoute';
+import PrivateRoute from './Components/PrivateRoute';
 import { AvMicNone } from 'material-ui/svg-icons';
 
 
