@@ -14,7 +14,7 @@ useEffect(() => {
       actions.resetForm();
       console.log(res);
       if (res.status === 200) {
-        props.history.push("/student/dashboard");
+        props.history.push("/students/:id/tickets/:ticketId");
       }
       console.log("response", res);
       actions.resetForm();
@@ -25,4 +25,4 @@ useEffect(() => {
     });
 });
 
-//  Body then Fomik Form
+//  Body then Formik Form
