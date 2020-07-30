@@ -57,24 +57,23 @@ const LoginForm = (props) => {
                 console.log("test", res.data.token)
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("student_id", res.data.student_id);
-                props.history.push("/students/:id/tickets/")
+                props.history.push("/create-ticket")
             })
             .catch(err => {
                 console.log("Err is", err);
             });
-        }else {
+        } else {
                 axiosWithAuth()
                 .post("/auth/helpers/login", credentials)
                 .then(res => {
                     localStorage.setItem("token", res.data.token);
-                    props.history.push("/helpers/:id/tickets")
+                    localStorage.setItem("helper_id", res.data.helper_id);
+                    props.history.push(`/helpers/${res.data.helper_id}/tickets`)
                 })
                 .catch(err => {
                     console.log("Err is", err);
                 });
         }
-
-
     };
 
     return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Link, useLocation } from 'react-router-dom';
+import { Switch, Route, Link, useLocation, Redirect } from 'react-router-dom';
 import './App.css';
 
 // Material-UI imports
@@ -47,7 +47,7 @@ function App(props) {
   const classes = useStyles();
   const links = [
     {title:'Create Ticket', url: '/create-ticket', icon: <CreateIcon />},
-    {title: 'View Tickets', url: '/ticket-queue', icon: <InboxIcon />},
+    {title: 'View Tickets', url: `/helpers/${localStorage.getItem('helper_id')}/tickets/`, icon: <InboxIcon />},
   ];
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
@@ -88,8 +88,8 @@ function App(props) {
       </AppBar>
       {/* Switch for routing */}
       <Switch>
-        <Route exact path='/'>
-          <h1>Index page</h1>
+        <Route exact path='/' render={() => (window.location = "https://devdeskmarketing.vercel.app/index.html")} >
+
         </Route>
         <Route path='/login' >
           <Login history={props.history}/>

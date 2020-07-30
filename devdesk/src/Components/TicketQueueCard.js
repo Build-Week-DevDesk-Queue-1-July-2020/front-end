@@ -1,10 +1,12 @@
 import React from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 // Material-UI imports
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 
 
@@ -48,8 +50,16 @@ const useStyles = makeStyles({
 });
 
 
-const TicketQueueCard = ({age, category, title, owner}) => {
+const TicketQueueCard = ({age, category, title, owner, id}) => {
     const classes = useStyles();
+
+    const assignHandler = e => {
+      axiosWithAuth()
+      .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/inprogress`)
+      .then( res => console.log(res.data) )
+      .catch( err => console.log(err) )
+      .finally( console.log('Axios call completed'));
+    };
 
     return (
         <Card className={classes.root}>
@@ -76,6 +86,17 @@ const TicketQueueCard = ({age, category, title, owner}) => {
                 <Avatar className="ownerAvatar">{owner}</Avatar>
               </div>
             </CardContent>
+            <CardContent>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    type="submit"
+                    className={classes.button}
+                    onClick={assignHandler}
+                >
+                    Assign to Me
+                </Button>
+              </CardContent>
           </div>
         </CardContent>
       </Card>

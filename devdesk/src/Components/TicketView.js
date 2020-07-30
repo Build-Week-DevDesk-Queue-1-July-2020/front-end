@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 // Material-UI imports
 import Card from "@material-ui/core/Card";
@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
+import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -54,6 +55,23 @@ const useStyles = makeStyles({
       const { id } = useParams();
       const [ticket, setTicket] = useState({});
 
+      const resolveHandler = e => {
+        axiosWithAuth()
+        .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/completed`)
+        .then( res => console.log(res) )
+        .catch( err => console.log(err) )
+        .finally( console.log('Axios call completed!'));
+      };
+
+      const reassignHandler = e => {
+        axiosWithAuth()
+        .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/open`)
+        .then( res => console.log(res.data) )
+        .catch( err => console.log(err) )
+        .finally( console.log('Axios call completed'));
+        props.history.push(`/helpers/${localStorage.getItem('helper_id')}/tickets/`);
+      };
+
       useEffect( () => {
         axiosWithAuth()
         .get(`/helpers/tickets/${id}`)
@@ -94,6 +112,28 @@ const useStyles = makeStyles({
                   <Avatar className="ownerAvatar">{ticket.helper_name}</Avatar>
                 </div>
               </CardContent>
+              <CardContent>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    className={classes.button}
+                    onClick={resolveHandler}
+                >
+                    Resolve Ticket
+                </Button>
+              </CardContent>
+              <CardContent>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    type="submit"
+                    className={classes.button}
+                    onClick={reassignHandler}
+                >
+                    Reassign Ticket
+                </Button>
+              </CardContent>
             </div>
           </CardContent>
         </Card>
@@ -103,4 +143,4 @@ const useStyles = makeStyles({
 
 
 
-  export default TicketView;
+  export default withRouter(TicketView);
