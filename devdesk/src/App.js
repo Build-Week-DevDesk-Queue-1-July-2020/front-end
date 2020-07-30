@@ -17,11 +17,13 @@ import InboxIcon from '@material-ui/icons/Inbox';
 // Custom component imports
 import Sidebar from "./Components/Sidebar";
 import Login from "./Components/Login";
+import Logoff from './Components/Logoff'
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
 import TicketView from './Components/TicketView';
 import PrivateRoute from './Components/PrivateRoute';
+import ProtectedRoute from './Components/PrivateRoute';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -84,6 +86,7 @@ function App(props) {
             {pageTitle}
           </Typography>
           <Link to="/login"><Button color="inherit">Login</Button></Link>
+          <Link to="/logoff"><Button>Logoff</Button></Link>
         </Toolbar>
       </AppBar>
       {/* Switch for routing */}
@@ -94,6 +97,7 @@ function App(props) {
         <Route path='/login' >
           <Login history={props.history}/>
         </Route>
+        <ProtectedRoute exact path="/logout" component={Logoff} />
         <PrivateRoute path='/register'>
           <Register />
         </PrivateRoute>
