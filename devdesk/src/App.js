@@ -20,6 +20,7 @@ import Login from "./Components/Login";
 import Register from './Components/Register';
 import TicketCreation from './Components/TicketCreation';
 import TicketQueue from './Components/TicketQueue';
+import TicketView from './Components/TicketView';
 import PrivateRoute from './Components/PrivateRoute';
 
 
@@ -110,6 +111,11 @@ function App(props) {
           <Sidebar links={links} />
           {/* //add ticket queue path */}
           <TicketQueue />
+        </PrivateRoute>
+        <PrivateRoute exact path='/helpers/ticket/:id'>
+          <Sidebar links={links} />
+          {/* //add ticket queue path */}
+          <TicketView />
         </PrivateRoute>
       </Switch>
     </div>
