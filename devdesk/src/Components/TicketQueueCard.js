@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 
 
@@ -51,6 +52,10 @@ const useStyles = makeStyles({
 const TicketQueueCard = ({age, category, title, owner}) => {
     const classes = useStyles();
 
+    const assignHandler = e => {
+      // use this to assign ticket to helper
+    };
+
     return (
         <Card className={classes.root}>
         <CardContent>
@@ -76,6 +81,17 @@ const TicketQueueCard = ({age, category, title, owner}) => {
                 <Avatar className="ownerAvatar">{owner}</Avatar>
               </div>
             </CardContent>
+            <CardContent>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    type="submit"
+                    className={classes.button}
+                    onClick={assignHandler}
+                >
+                    Assign to Me
+                </Button>
+              </CardContent>
           </div>
         </CardContent>
       </Card>

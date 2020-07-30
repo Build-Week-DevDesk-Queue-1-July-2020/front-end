@@ -47,7 +47,7 @@ function App(props) {
   const classes = useStyles();
   const links = [
     {title:'Create Ticket', url: '/create-ticket', icon: <CreateIcon />},
-    {title: 'View Tickets', url: '/ticket-queue', icon: <InboxIcon />},
+    {title: 'View Tickets', url: `/helpers/${localStorage.getItem('helper_id')}/tickets/`, icon: <InboxIcon />},
   ];
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");

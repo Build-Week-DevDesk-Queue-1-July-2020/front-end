@@ -74,8 +74,6 @@ const LoginForm = (props) => {
                     console.log("Err is", err);
                 });
         }
-
-
     };
 
     return (
