@@ -82,6 +82,7 @@ const TicketQueue = props => {
               status={ticket.status}
               tried={ticket.what_ive_tried}
               student={ticket.by_student}
+              id={ticket.id}
             />
           </Link>
         )

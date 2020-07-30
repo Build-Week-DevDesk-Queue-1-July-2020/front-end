@@ -64,6 +64,11 @@ const useStyles = makeStyles({
       };
 
       const reassignHandler = e => {
+        axiosWithAuth()
+        .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/open`)
+        .then( res => console.log(res.data) )
+        .catch( err => console.log(err) )
+        .finally( console.log('Axios call completed'));
         props.history.push(`/helpers/${localStorage.getItem('helper_id')}/tickets/`);
       };
 

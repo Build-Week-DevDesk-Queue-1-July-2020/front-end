@@ -1,4 +1,5 @@
 import React from 'react';
+import axiosWithAuth from '../utils/axiosWithAuth';
 // Material-UI imports
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -49,11 +50,15 @@ const useStyles = makeStyles({
 });
 
 
-const TicketQueueCard = ({age, category, title, owner}) => {
+const TicketQueueCard = ({age, category, title, owner, id}) => {
     const classes = useStyles();
 
     const assignHandler = e => {
-      // use this to assign ticket to helper
+      axiosWithAuth()
+      .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/inprogress`)
+      .then( res => console.log(res.data) )
+      .catch( err => console.log(err) )
+      .finally( console.log('Axios call completed'));
     };
 
     return (
