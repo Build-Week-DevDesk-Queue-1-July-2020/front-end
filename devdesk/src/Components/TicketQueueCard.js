@@ -4,8 +4,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
+import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   root: {
     display: "inline-block",
-    width: "700px"
+    width: "750px"
   },
   button: {
     marginTop: "32px",
@@ -25,6 +24,7 @@ const useStyles = makeStyles({
   },
   details: {
     display: 'flex',
+    flexDirection: 'column',
   },
   age: {
     textAlign: 'left',
@@ -47,18 +47,26 @@ const useStyles = makeStyles({
     alignSelf: 'center',
     marginLeft: '20px',
   },
+  chips: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'start',
+  },
+  categoryChip: {
+    width: 'fit-content',
+    marginLeft: '32px',
+  },
 });
 
 
-const TicketQueueCard = ({age, category, title, owner, id}) => {
+const TicketQueueCard = ({category, title, owner, id, description, status, tried, student}) => {
     const classes = useStyles();
 
     const assignHandler = e => {
       axiosWithAuth()
       .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/inprogress`)
       .then( res => console.log(res.data) )
-      .catch( err => console.log(err) )
-      .finally( console.log('Axios call completed'));
+      .catch( err => console.log(err) );
     };
 
     return (
@@ -66,25 +74,44 @@ const TicketQueueCard = ({age, category, title, owner, id}) => {
         <CardContent>
           <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography className={classes.age} variant="subtitle1" color="textSecondary">
-                {age}
+              <Typography className={classes.age} variant="h2">
+                {title}
               </Typography>
             </CardContent>
-            <Divider orientation="vertical" flexItem />
             <CardContent>
               <div className={classes.info}>
-                <Typography component="h5" variant="h5">
-                    {category}
+                <Typography variant="button">
+                  Student:
+                </Typography>
+                <Typography variant="subtitle2">
+                {student}
+              </Typography>
+              </div>
+            </CardContent>
+
+            <CardContent>
+              <div className={classes.info}>
+                <Typography variant="button">
+                  Description of issue:
                 </Typography>
                 <Typography>
-                    {title}
+                    {description}
                 </Typography>
               </div>
             </CardContent>
             <CardContent>
-              <div className={classes.owner}>
-                <Avatar className="ownerAvatar">{owner}</Avatar>
+              <div className={classes.info}>
+                <Typography variant="button">
+                  What the student has tried:
+                </Typography>
+                <Typography>
+                    {tried}
+                </Typography>
               </div>
+            </CardContent>
+            <CardContent className={classes.chips}>
+              <Chip label={category} className={classes.categoryChip} />
+              <Chip label={status} className={classes.categoryChip} />
             </CardContent>
             <CardContent>
                 <Button
