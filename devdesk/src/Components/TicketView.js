@@ -5,19 +5,19 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import Avatar from '@material-ui/core/Avatar';
+import Chip from '@material-ui/core/Chip';
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
     root: {
       display: "inline-block",
-      width: "700px"
+      width: "750px",
+      marginTop: '32px',
     },
     button: {
-      marginTop: "32px",
       backgroundColor: "#00B4D8",
+      marginRight: '15px',
       "&:hover": {
         boxShadow: "none",
         backgroundColor: "#0077B6",
@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     },
     details: {
       display: 'flex',
+      flexDirection: 'column',
     },
     age: {
       textAlign: 'left',
@@ -47,6 +48,20 @@ const useStyles = makeStyles({
       alignSelf: 'center',
       marginLeft: '20px',
     },
+    chips: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'start',
+    },
+    categoryChip: {
+      width: 'fit-content',
+      marginLeft: '32px',
+    },
+    buttons: {
+      width: 'fit-content',
+      display: 'flex',
+      justifyContent: 'space-around',
+    },
   });
 
 
@@ -59,16 +74,14 @@ const useStyles = makeStyles({
         axiosWithAuth()
         .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/completed`)
         .then( res => console.log(res) )
-        .catch( err => console.log(err) )
-        .finally( console.log('Axios call completed!'));
+        .catch( err => console.log(err) );
       };
 
       const reassignHandler = e => {
         axiosWithAuth()
         .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/open`)
         .then( res => console.log(res.data) )
-        .catch( err => console.log(err) )
-        .finally( console.log('Axios call completed'));
+        .catch( err => console.log(err) );
         props.history.push(`/helpers/${localStorage.getItem('helper_id')}/tickets/`);
       };
 
@@ -76,43 +89,56 @@ const useStyles = makeStyles({
         axiosWithAuth()
         .get(`/helpers/tickets/${id}`)
         .then( res => {
-            console.log(res.data[0]);
             setTicket(res.data[0]);
         })
-        .catch( err => console.log(err) )
-        .finally( console.log('axios finished!'));
+        .catch( err => console.log(err) );
       }, [id]);
-
-    //   if(!ticket.length) {
-    //     return <div></div>
-    //   }
 
       return (
           <Card className={classes.root}>
           <CardContent>
             <div className={classes.details}>
               <CardContent className={classes.content}>
-                <Typography className={classes.age} variant="subtitle1" color="textSecondary">
-                 1 DAY
+                <Typography className={classes.age} variant="h2">
+                  {ticket.title}
                 </Typography>
               </CardContent>
-              <Divider orientation="vertical" flexItem />
               <CardContent>
                 <div className={classes.info}>
-                  <Typography component="h5" variant="h5">
-                      {ticket.category}
+                  <Typography variant="button">
+                    Student:
+                  </Typography>
+                  <Typography variant="subtitle2">
+                  {ticket.by_student}
+                </Typography>
+                </div>
+              </CardContent>
+
+              <CardContent>
+                <div className={classes.info}>
+                  <Typography variant="button">
+                    Description of issue:
                   </Typography>
                   <Typography>
-                      {ticket.title}
+                      {ticket.description}
                   </Typography>
                 </div>
               </CardContent>
               <CardContent>
-                <div className={classes.owner}>
-                  <Avatar className="ownerAvatar">{ticket.helper_name}</Avatar>
+                <div className={classes.info}>
+                  <Typography variant="button">
+                    What the student has tried:
+                  </Typography>
+                  <Typography>
+                      {ticket.what_ive_tried}
+                  </Typography>
                 </div>
               </CardContent>
-              <CardContent>
+              <CardContent className={classes.chips}>
+                <Chip label={ticket.category} className={classes.categoryChip} />
+                <Chip label={ticket.status} className={classes.categoryChip} />
+              </CardContent>
+              <CardContent className={classes.buttons}>
                 <Button
                     variant="contained"
                     color="primary"
@@ -122,13 +148,11 @@ const useStyles = makeStyles({
                 >
                     Resolve Ticket
                 </Button>
-              </CardContent>
-              <CardContent>
                 <Button
-                    variant="contained"
+                    variant="outlined"
                     color="secondary"
                     type="submit"
-                    className={classes.button}
+                    className={classes.reassignButton}
                     onClick={reassignHandler}
                 >
                     Reassign Ticket

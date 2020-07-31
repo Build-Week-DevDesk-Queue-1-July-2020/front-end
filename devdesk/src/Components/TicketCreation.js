@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
@@ -49,14 +49,11 @@ const TicketCreation = (props) => {
     const history = useHistory();
 
     const submitHandler = data => {
-        // data.status = "Open";
         data.student_id = localStorage.getItem("student_id");
-        console.log(data);
 
         axiosWithAuth()
         .post(`/students/${data.student_id}/tickets/`, data)
         .then( res => {
-            console.log(res);
             if(res.status === 200) {
                 history.push("/student/tickets/:id");
             }
