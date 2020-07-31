@@ -57,7 +57,7 @@ const LoginForm = (props) => {
                 console.log("test", res.data.token)
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("student_id", res.data.student_id);
-                props.history.push("/create-ticket")
+                props.history.push({ pathname: "/create-ticket", state: {role: data.role} })
             })
             .catch(err => {
                 console.log("Err is", err);

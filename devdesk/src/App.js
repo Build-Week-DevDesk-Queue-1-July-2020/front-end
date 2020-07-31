@@ -100,7 +100,7 @@ function App(props) {
           <Register />
         </PrivateRoute>
         <PrivateRoute exact path='/create-ticket'>
-          <Sidebar links={links} />
+          {/* <Sidebar links={links} /> */}
           {/* //add ticket creation path */}
           <TicketCreation />
         </PrivateRoute>
