@@ -75,6 +75,7 @@ const useStyles = makeStyles({
         .put(`/helpers/${localStorage.getItem('helper_id')}/tickets/${id}/completed`)
         .then( res => console.log(res) )
         .catch( err => console.log(err) );
+        props.history.push(`/helpers/${localStorage.getItem('helper_id')}/tickets/`);
       };
 
       const reassignHandler = e => {

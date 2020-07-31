@@ -95,7 +95,7 @@ function App(props) {
         <Route path='/login' >
           <Login history={props.history}/>
         </Route>
-        <ProtectedRoute exact path="/logout" component={Logoff} />
+        <ProtectedRoute exact path="/logoff" component={Logoff} />
         <PrivateRoute path='/register'>
           <Register />
         </PrivateRoute>
