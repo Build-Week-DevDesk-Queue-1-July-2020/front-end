@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +9,12 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from "@material-ui/core/styles";
+
+const Alert = (props) => {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+};
 
 const useStyles = makeStyles({
     root: {
@@ -44,11 +49,12 @@ const useStyles = makeStyles({
 
 
 const TicketCreation = (props) => {
-    const { register, handleSubmit, control, errors } = useForm();
+    const { register, handleSubmit, control, errors, reset } = useForm();
     const classes= useStyles();
+    const [successfulSubmission, setSuccessfulSubmission] = useState(false);
     const history = useHistory();
 
-    const submitHandler = data => {
+    const submitHandler = (data, e) => {
         data.student_id = localStorage.getItem("student_id");
 
         axiosWithAuth()
@@ -59,7 +65,11 @@ const TicketCreation = (props) => {
             }
         })
         .catch( err => console.log(err))
-        .finally( () => console.log("Axios request finished."));
+        .finally( () => {
+            console.log("Axios request finished.");
+            e.target.reset();
+            setSuccessfulSubmission(true);
+        });
     };
 
 
@@ -141,6 +151,7 @@ const TicketCreation = (props) => {
                         </div>
                     </form>
                 </CardContent>
+                {successfulSubmission ? <Alert severity="success">Your ticket was successfully submitted!</Alert> : null }
             </Card>
         </div>
     );
