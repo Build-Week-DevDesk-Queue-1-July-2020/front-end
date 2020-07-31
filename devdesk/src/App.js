@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Link, useLocation, Redirect } from 'react-router-dom';
+import { Switch, Route, Link, useLocation } from 'react-router-dom';
 import './App.css';
 
 // Material-UI imports
@@ -8,8 +8,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import CreateIcon from '@material-ui/icons/Create';
 import InboxIcon from '@material-ui/icons/Inbox';
 
@@ -102,7 +100,7 @@ function App(props) {
           <Register />
         </PrivateRoute>
         <PrivateRoute exact path='/create-ticket'>
-          <Sidebar links={links} />
+          {/* <Sidebar links={links} /> */}
           {/* //add ticket creation path */}
           <TicketCreation />
         </PrivateRoute>
