@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Sidebar = ({ links }) => {
     const classes = useStyles();
-    const params = useParams();
 
     return (
         <Drawer
